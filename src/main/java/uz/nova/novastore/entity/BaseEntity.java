@@ -18,16 +18,13 @@ import java.util.UUID;
 @Getter
 @Setter
 public abstract class BaseEntity {
-    @JsonIgnore
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
 
-    @JsonIgnore
     @CreationTimestamp
     private LocalDateTime createdDate;
 
-    @JsonIgnore
     @UpdateTimestamp
     private LocalDateTime updatedDate;
 
