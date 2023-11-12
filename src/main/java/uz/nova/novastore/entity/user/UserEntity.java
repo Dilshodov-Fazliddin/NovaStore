@@ -27,10 +27,11 @@ public class UserEntity extends BaseEntity implements UserDetails {
     private String username;
     private String password;
     @ManyToMany(cascade = CascadeType.DETACH,fetch = FetchType.EAGER)
-    private List<UserRole> role;
+    private List<UserRoleEntity> role;
     @Enumerated(value = EnumType.STRING)
     private UserState state;
     private Integer attempts;
+    private Integer age;
     @JsonIgnore
     @ManyToMany(cascade = CascadeType.DETACH,fetch = FetchType.EAGER)
     private List<Favourites>favourites;
@@ -38,7 +39,7 @@ public class UserEntity extends BaseEntity implements UserDetails {
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         List<GrantedAuthority>authorities=new ArrayList<>();
-        role.forEach((role)->authorities.add(new SimpleGrantedAuthority(role.getRole())));
+        role.forEach((role)->authorities.add(new SimpleGrantedAuthority(role.getName())));
         List<PermissionEntity>userPermission=new ArrayList<>();
         role.forEach((roleEntity)-> userPermission.addAll(roleEntity.getPermissions()));
         userPermission.forEach((permissionEntity -> authorities.add(new SimpleGrantedAuthority(permissionEntity.getPermission()))));

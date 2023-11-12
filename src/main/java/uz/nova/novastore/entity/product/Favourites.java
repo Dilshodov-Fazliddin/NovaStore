@@ -7,6 +7,6 @@ import java.util.UUID;
 
 @Entity(name = "favourites")
 public class Favourites extends BaseEntity {
-    private ProductEntity product;
+//    private ProductEntity product;
     private UUID userId;
 }

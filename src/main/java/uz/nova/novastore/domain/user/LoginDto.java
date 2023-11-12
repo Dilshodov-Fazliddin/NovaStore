@@ -1,16 +1,15 @@
 package uz.nova.novastore.domain.user;
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
-@Builder
-public class UserCreateDto {
-    private String name;
-    private String email;
+public class LoginDto {
     private String username;
     private String password;
-    private Integer age;
 }

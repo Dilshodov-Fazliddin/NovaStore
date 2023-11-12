@@ -12,9 +12,9 @@ import java.util.List;
 @Getter
 @Setter
 @Builder
-public class UserRole extends BaseEntity {
+public class UserRoleEntity extends BaseEntity {
     @Column(unique = true)
-    private String role;
+    private String name;
     @ManyToMany(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
     private List<PermissionEntity> permissions;
 }

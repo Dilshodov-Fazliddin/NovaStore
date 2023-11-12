@@ -16,5 +16,5 @@ public class VerificationEntity extends BaseEntity {
     @ManyToOne
     private UserEntity user;
 
-    private String code;
+    private Integer code;
 }
