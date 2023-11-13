@@ -48,14 +48,22 @@ public class UserService implements UserDetailsService {
     }
 
 
-    public StandardResponse<UserEntity> signUp(UserCreateDto userDto) {
+    public StandardResponse<UserEntity> signUp(UserCreateDto userDto,Boolean status) {
         UserEntity user = modelMapper.map(userDto, UserEntity.class);
 
-        user.setAttempts(0);
-        user.setRole(List.of(roleRepository.findUserRoleEntitiesByName("ROLE_USER")
-                .orElseThrow(() -> new DataNotFoundException("Role not found"))));
+        if (userDto.getAge()<18){
+            throw new NotAcceptableException("you are young");
+        }
+        if (!status) {
+            user.setRole(List.of(roleRepository.findUserRoleEntitiesByName("ROLE_CONSUMER")
+                    .orElseThrow(() -> new DataNotFoundException("Role not found"))));
+        }else {
+            user.setRole(List.of(roleRepository.findUserRoleEntitiesByName("ROLE_USER")
+                    .orElseThrow(() -> new DataNotFoundException("Role not found"))));
+        }
         user.setState(UserState.NOT_VERIFIED);
         user.setPassword(passwordEncoder.encode(userDto.getPassword()));
+        user.setAttempts(0);
 
 
         int i = random.nextInt(1000, 9999);

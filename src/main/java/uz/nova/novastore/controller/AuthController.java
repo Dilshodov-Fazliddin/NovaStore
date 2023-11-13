@@ -17,14 +17,20 @@ import java.util.UUID;
 public class AuthController {
     private final UserService userService;
 
-    @PostMapping("/sign-up")
+    @PostMapping("/client/sign-up")
     public StandardResponse<UserEntity>signUp(
             @RequestBody UserCreateDto userCreate
     ){
-     return userService.signUp(userCreate);
+
+     return userService.signUp(userCreate,true );
     }
 
-
+    @PostMapping("/consumer/sign-up")
+    public StandardResponse<UserEntity>signUpConsumer(
+            @RequestBody UserCreateDto userCreate
+    ){
+        return userService.signUp(userCreate,false);
+    }
     @PutMapping("/verify/{id}")
     public StandardResponse<Boolean>verify(
             @RequestParam String code,
