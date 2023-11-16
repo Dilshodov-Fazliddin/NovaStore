@@ -5,8 +5,8 @@ spring:
   datasource:
 
     username: doadmin
-    password: AVNS_eFPUCO99op2F4mJqWaY
-    url:  jdbc:postgresql://db-postgresql-lon1-34689-do-user-15129443-0.c.db.ondigitalocean.com:25060/nova_store
+    password: AVNS_yz_TpmnlD19CuqojhLT
+    url:  jdbc:postgresql://db-nova-do-user-15129443-0.c.db.ondigitalocean.com:25060/nova_store
     driver-class-name: org.postgresql.Driver
   mail:
     host: smtp.gmail.com
