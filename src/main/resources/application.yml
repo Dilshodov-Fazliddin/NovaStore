@@ -4,6 +4,7 @@ server:
 spring:
   datasource:
 
+
     username: doadmin
     password: AVNS_yz_TpmnlD19CuqojhLT
     url:  jdbc:postgresql://db-nova-do-user-15129443-0.c.db.ondigitalocean.com:25060/nova_store
