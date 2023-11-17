@@ -25,12 +25,15 @@ public class SecurityConfig {
     private final UserService auth;
     private final JwtService jwtService;
     private final AuthenticationService authenticationService;
+    private final String[] permitAll = {"/swagger-ui/**", "/v3/api-docs/**"};
+
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         return http
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests((requestsConfigurer) ->
                         requestsConfigurer
+                                .requestMatchers(permitAll).permitAll()
                                 .anyRequest().permitAll()
                 )
                 .sessionManagement((session) -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
