@@ -20,16 +20,6 @@ import java.util.UUID;
 @RequiredArgsConstructor
 public class AuthController {
     private final UserService userService;
-    @ApiResponse(
-            headers = @Header(
-                    name = "authorization",
-                    required = true,
-                    description = "Jwt token is required to check if the user has role or permission to access this api"
-            ),
-            responseCode = "200",
-            description = "Get user by its username"
-    )
-    @Operation(security = @SecurityRequirement(name = "jwtBearerAuth"))
     @PostMapping("/client/sign-up")
     public StandardResponse<UserEntity>signUp(
             @RequestBody UserCreateDto userCreate
@@ -37,32 +27,13 @@ public class AuthController {
 
      return userService.signUp(userCreate,true );
     }
-    @ApiResponse(
-            headers = @Header(
-                    name = "authorization",
-                    required = true,
-                    description = "Jwt token is required to check if the user has role or permission to access this api"
-            ),
-            responseCode = "200",
-            description = "Get user by its username"
-    )
-    @Operation(security = @SecurityRequirement(name = "jwtBearerAuth"))
     @PostMapping("/consumer/sign-up")
     public StandardResponse<UserEntity>signUpConsumer(
             @RequestBody UserCreateDto userCreate
     ){
         return userService.signUp(userCreate,false);
     }
-    @ApiResponse(
-            headers = @Header(
-                    name = "authorization",
-                    required = true,
-                    description = "Jwt token is required to check if the user has role or permission to access this api"
-            ),
-            responseCode = "200",
-            description = "Get user by its username"
-    )
-    @Operation(security = @SecurityRequirement(name = "jwtBearerAuth"))
+
     @PutMapping("/verify/{id}")
     public StandardResponse<Boolean>verify(
             @RequestParam String code,
@@ -71,17 +42,7 @@ public class AuthController {
       return userService.verify(code,id);
     }
 
-    @ApiResponse(
-            headers = @Header(
-                    name = "authorization",
-                    required = true,
-                    description = "Jwt token is required to check if the user has role or permission to access this api"
-            ),
-            responseCode = "200",
-            description = "Get user by its username"
-    )
-    @Operation(security = @SecurityRequirement(name = "jwtBearerAuth"))
-    @GetMapping("/login")
+      @GetMapping("/login")
     private StandardResponse<JwtResponse>login(
             @RequestBody LoginDto loginDto
     ){
