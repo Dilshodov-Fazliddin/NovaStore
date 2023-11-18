@@ -12,6 +12,7 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.web.cors.CorsConfiguration;
 import uz.nova.novastore.filter.JwtTokenFilter;
 import uz.nova.novastore.service.user.AuthenticationService;
 import uz.nova.novastore.service.user.JwtService;
@@ -30,6 +31,15 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         return http
+                .cors(cors -> cors.configurationSource(request -> {
+                    CorsConfiguration corsConfiguration = new CorsConfiguration();
+                    corsConfiguration.addAllowedOrigin("*");
+                    corsConfiguration.addAllowedMethod("*");
+                    corsConfiguration.addAllowedHeader("*");
+                    return corsConfiguration;
+                }))
+                .csrf(AbstractHttpConfigurer::disable)
+
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests((requestsConfigurer) ->
                         requestsConfigurer
@@ -40,6 +50,7 @@ public class SecurityConfig {
                 .addFilterBefore(new JwtTokenFilter(jwtService,authenticationService),
                         UsernamePasswordAuthenticationFilter.class)
                 .build();
+
     }
 
     @Bean
