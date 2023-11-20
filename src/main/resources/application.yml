@@ -3,17 +3,15 @@ server:
 
 spring:
   datasource:
-
-
-    username: doadmin
-    password: AVNS_yz_TpmnlD19CuqojhLT
-    url:  jdbc:postgresql://db-nova-do-user-15129443-0.c.db.ondigitalocean.com:25060/nova_store
+    username: postgres
+    password: omonov2006
+    url: jdbc:postgresql://localhost:5432/novastore
     driver-class-name: org.postgresql.Driver
   mail:
     host: smtp.gmail.com
     port: 587
-    username: dilshodovfazliddin@gmail.com
-    password: xkriwexxgzonkumt
+    username: omonov2006omonov@gmail.com
+    password: wkocegbefwfizukv
     properties:
       mjaail:
         smtp:
@@ -37,3 +35,5 @@ jwt:
     expiry: 300000
   refresh:
     expiry: 300000
+
+forDataLoader: never
