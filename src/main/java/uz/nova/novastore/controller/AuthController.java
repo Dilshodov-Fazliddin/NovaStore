@@ -1,51 +1,40 @@
 package uz.nova.novastore.controller;
 
-import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.headers.Header;
-import io.swagger.v3.oas.annotations.responses.ApiResponse;
-import io.swagger.v3.oas.annotations.security.SecurityRequirement;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import uz.nova.novastore.domain.response.JwtResponse;
-import uz.nova.novastore.domain.response.StandardResponse;
-import uz.nova.novastore.domain.user.LoginDto;
-import uz.nova.novastore.domain.user.UserCreateDto;
-import uz.nova.novastore.entity.user.UserEntity;
-import uz.nova.novastore.service.user.UserService;
-
-import java.util.UUID;
+import uz.nova.novastore.domain.*;
+import uz.nova.novastore.service.UserService;
 
 @RestController
 @RequestMapping("/nova/user/auth")
 @RequiredArgsConstructor
 public class AuthController {
     private final UserService userService;
+
     @PostMapping("/client/sign-up")
-    public StandardResponse<UserEntity>signUp(
-            @RequestBody UserCreateDto userCreate
-    ){
-
-     return userService.signUp(userCreate,true );
-    }
-    @PostMapping("/consumer/sign-up")
-    public StandardResponse<UserEntity>signUpConsumer(
-            @RequestBody UserCreateDto userCreate
-    ){
-        return userService.signUp(userCreate,false);
+    public ResponseEntity<StandardResponse<?>> signUp(@Valid @RequestBody UserCreateDto userCreate) {
+        return userService.signUp(userCreate);
     }
 
-    @PutMapping("/verify/{id}")
-    public StandardResponse<Boolean>verify(
-            @RequestParam String code,
-            @PathVariable UUID id
-    ){
-      return userService.verify(code,id);
+    @PutMapping("/verify")
+    public ResponseEntity<StandardResponse<?>> verify(@RequestParam int code, @RequestParam String email) {
+        return userService.verify(code, email);
     }
 
-      @GetMapping("/login")
-    private StandardResponse<JwtResponse>login(
-            @RequestBody LoginDto loginDto
-    ){
+    @PostMapping("/login")
+    public ResponseEntity<StandardResponse<JwtResponse>> login(@RequestBody LoginDto loginDto) {
         return userService.login(loginDto);
+    }
+
+    @PutMapping("/forgetPassword")
+    public ResponseEntity<StandardResponse<?>> forgetPassword(@RequestParam String email) {
+        return userService.forgetPassword(email);
+    }
+
+    @PutMapping("/verifyForgetPassword")
+    public ResponseEntity<StandardResponse<?>> verifyForgetPassword(@RequestBody VerifyForgetPasswordDto verifyForgetPasswordDto) {
+        return userService.verifyForgetPassword(verifyForgetPasswordDto);
     }
 }
