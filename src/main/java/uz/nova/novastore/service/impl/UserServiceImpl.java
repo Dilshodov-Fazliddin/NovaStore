@@ -64,8 +64,9 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     public ResponseEntity<StandardResponse<?>> forgetPassword(String email) {
         UserEntity user = userRepository.findByEmail(email).orElseThrow(() -> new DataNotFoundException("User not found"));
         int code = new Random().nextInt(1000, 9999);
+        userRepository.save(user);
         mailService.sendVerifyCode(code, email);
-        return ResponseEntity.ok(StandardResponse.builder().status(200).message("send verify code").data(userRepository.save(user)).build());
+        return ResponseEntity.ok(StandardResponse.builder().status(200).message("send verify code").data(null).build());
     }
 
     @Override
