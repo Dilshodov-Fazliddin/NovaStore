@@ -4,8 +4,8 @@ server:
 spring:
   datasource:
     username: postgres
-    password: omonov2006
-    url: jdbc:postgresql://localhost:5432/novastore
+    password: 1221
+    url: jdbc:postgresql://localhost:5432/nova_store
     driver-class-name: org.postgresql.Driver
   mail:
     host: smtp.gmail.com

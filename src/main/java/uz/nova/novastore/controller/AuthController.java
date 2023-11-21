@@ -24,7 +24,7 @@ public class AuthController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<StandardResponse<JwtResponse>> login(@RequestBody LoginDto loginDto) {
+    public ResponseEntity<StandardResponse<Object>> login(@RequestBody LoginDto loginDto) {
         return userService.login(loginDto);
     }
 
