@@ -1,8 +1,10 @@
 package uz.nova.novastore.config;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
@@ -22,11 +24,18 @@ import uz.nova.novastore.service.impl.UserServiceImpl;
 
 @Configuration
 @EnableMethodSecurity
-@RequiredArgsConstructor
 public class SecurityConfig {
-    private final UserServiceImpl userService;
-    private final JwtService jwtService;
-    private final AuthenticationService authenticationService;
+    private UserServiceImpl userService;
+    @Autowired
+    private JwtService jwtService;
+    @Autowired
+    private AuthenticationService authenticationService;
+
+    @Autowired
+    public SecurityConfig(@Lazy UserServiceImpl userService) {
+        this.userService = userService;
+    }
+
     private final String[] permitAll = {"/swagger-ui/**", "/v3/api-docs/**", "/nova/user/auth/**"};
 
     @Bean
