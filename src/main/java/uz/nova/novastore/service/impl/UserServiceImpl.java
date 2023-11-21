@@ -52,7 +52,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     @Override
     public ResponseEntity<StandardResponse<Object>> login(LoginDto loginDto) {
         UserEntity user = userRepository.findByEmail(loginDto.getEmail()).orElseThrow(() -> new DataNotFoundException("User not found"));
-        if (passwordEncoder.matches(user.getPassword(), loginDto.getPassword())) {
+        if (passwordEncoder.matches(loginDto.getPassword(),user.getPassword())) {
             return ResponseEntity.ok(StandardResponse.builder().status(200).message("User successfully login in system").
                     data(JwtResponse.builder().accessToken(jwtService.generateAccessToken(user)).build())
                     .build());
