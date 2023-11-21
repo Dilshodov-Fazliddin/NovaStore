@@ -51,7 +51,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 
     @Override
     public ResponseEntity<StandardResponse<Object>> login(LoginDto loginDto) {
-        UserEntity user = userRepository.findByEmail(loginDto.getEmail()).orElseThrow(() -> new DataNotFoundException("User not found"));
+        UserEntity user = userRepository.findByEmail(loginDto.getEmail()).orElseThrow(() -> new DataNotFoundException("Password or username isn't correct"));
         if (passwordEncoder.matches(loginDto.getPassword(),user.getPassword())) {
             return ResponseEntity.ok(StandardResponse.builder().status(200).message("User successfully login in system").
                     data(JwtResponse.builder().accessToken(jwtService.generateAccessToken(user)).build())
@@ -64,6 +64,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     public ResponseEntity<StandardResponse<?>> forgetPassword(String email) {
         UserEntity user = userRepository.findByEmail(email).orElseThrow(() -> new DataNotFoundException("User not found"));
         int code = new Random().nextInt(1000, 9999);
+        user.setEmailCode(code);
         userRepository.save(user);
         mailService.sendVerifyCode(code, email);
         return ResponseEntity.ok(StandardResponse.builder().status(200).message("send verify code").data(null).build());
@@ -74,7 +75,9 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         UserEntity user = userRepository.findByEmailAndEmailCode(verifyForgetPasswordDto.getEmail(), Integer.valueOf(verifyForgetPasswordDto.getEmailCode()))
                 .orElseThrow(() -> new ForbiddenException("Your code is wrong"));
         user.setPassword(passwordEncoder.encode(verifyForgetPasswordDto.getNewPassword()));
-        return ResponseEntity.ok(StandardResponse.builder().status(200).message("Successfully updated password").data(userRepository.save(user)).build());
+        user.setEmailCode(null);
+        userRepository.save(user);
+        return ResponseEntity.ok(StandardResponse.builder().status(200).message("Successfully updated password").data(null).build());
     }
 
 
