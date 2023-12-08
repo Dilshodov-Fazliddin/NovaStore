@@ -3,9 +3,9 @@ server:
 
 spring:
   datasource:
-    username: postgres
-    password: 1221
-    url: jdbc:postgresql://localhost:5432/nova_store
+    username: novastore_user
+    password: Yg69BP96gyB8L2HR1rVv9zt8UMebe5Ae
+    url: jdbc:postgresql://dpg-clpi5o146foc73cgjpdg-a.oregon-postgres.render.com:5432/novastore
     driver-class-name: org.postgresql.Driver
   mail:
     host: smtp.gmail.com
@@ -22,7 +22,7 @@ spring:
             enable: true
   jpa:
     hibernate:
-      ddl-auto: update
+      ddl-auto: create
     properties:
       hibernate:
         dialect: org.hibernate.dialect.PostgreSQLDialect
