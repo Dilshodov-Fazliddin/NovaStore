@@ -1,0 +1,39 @@
+server:
+  port: 8080
+
+spring:
+  datasource:
+    username: postgres
+    password: 1221
+    url: jdbc:postgresql://localhost:5432/nova_store
+    driver-class-name: org.postgresql.Driver
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: omonov2006omonov@gmail.com
+    password: wkocegbefwfizukv
+    properties:
+      mjaail:
+        smtp:
+          auth: true
+      mail:
+        smtp:
+          starttls:
+            enable: true
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+    open-in-view: false
+
+jwt:
+  secret:
+    key: 343243432432970943248034738493482742437324FG1
+  access:
+    expiry: 300000
+  refresh:
+    expiry: 300000
+
+forDataLoader: never
