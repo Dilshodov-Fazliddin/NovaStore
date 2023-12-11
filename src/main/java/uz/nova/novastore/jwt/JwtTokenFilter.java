@@ -10,7 +10,7 @@ import lombok.AllArgsConstructor;
 import lombok.NonNull;
 import org.springframework.web.filter.OncePerRequestFilter;
 import uz.nova.novastore.exception.NotAcceptableException;
-import uz.nova.novastore.service.AuthenticationService;
+import uz.nova.novastore.service.auth.AuthenticationService;
 
 import java.io.IOException;
 import java.util.Date;

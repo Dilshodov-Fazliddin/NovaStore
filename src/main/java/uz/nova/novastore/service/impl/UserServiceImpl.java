@@ -1,7 +1,6 @@
 package uz.nova.novastore.service.impl;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -14,9 +13,9 @@ import uz.nova.novastore.exception.DataNotFoundException;
 import uz.nova.novastore.exception.ForbiddenException;
 import uz.nova.novastore.exception.NotAcceptableException;
 import uz.nova.novastore.jwt.JwtService;
-import uz.nova.novastore.jwt.JwtTokenFilter;
 import uz.nova.novastore.mapper.UserMapper;
 import uz.nova.novastore.repository.UserRepository;
+import uz.nova.novastore.service.MailService;
 import uz.nova.novastore.service.UserService;
 
 import java.util.Random;
