@@ -31,13 +31,17 @@ public class RoleServiceImpl implements RoleService {
     }
 
     @Override
-    public ResponseEntity<StandardResponse<RoleEntity>> updateRole(String oldName, String newName) {
-        roleRepository.updateByName(oldName,newName);
-        return ResponseEntity.ok(StandardResponse.<RoleEntity>builder().message("updated Role").data(null).status(200).build())
+    public ResponseEntity<StandardResponse<RoleEntity>> updateRole(RoleDto roleDto, UUID id) {
+        roleRepository.deleteById(id);
+        RoleEntity role = roleMapper.toEntity(roleDto);
+        role.setName("ROLE_"+role.getName().toUpperCase());
+        roleRepository.save(role);
+        return ResponseEntity.ok(StandardResponse.<RoleEntity>builder().data(null).status(200).message("role updated").build());
     }
 
     @Override
     public ResponseEntity<StandardResponse<List<RoleEntity>>> getAllRoles() {
-        return ResponseEntity.ok(StandardResponse.<List<RoleEntity>>builder().message("All roles").status(200).data(roleRepository.findAll()).build());
+        return ResponseEntity.ok(StandardResponse.<List<RoleEntity>>builder().message("All roles").status(200).list(List.of(roleRepository.findAll())).build());
     }
+
 }

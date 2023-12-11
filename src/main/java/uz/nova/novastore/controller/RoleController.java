@@ -34,8 +34,8 @@ public class RoleController {
     }
 
     @PutMapping("/update")
-    public ResponseEntity<StandardResponse<RoleEntity>>update(@RequestParam String newName,@RequestParam String oldName){
-        return roleService.updateRole(oldName,newName);
+    public ResponseEntity<StandardResponse<RoleEntity>>update(@RequestBody RoleDto roleDto,@RequestParam UUID id){
+        return roleService.updateRole(roleDto,id);
     }
 }
 

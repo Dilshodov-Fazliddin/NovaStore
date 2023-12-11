@@ -7,7 +7,7 @@ import uz.nova.novastore.entity.tmp.BaseEntity;
 import java.util.List;
 
 @EqualsAndHashCode(callSuper = true)
-@Entity
+@Entity(name = "role")
 @AllArgsConstructor
 @NoArgsConstructor
 @Data

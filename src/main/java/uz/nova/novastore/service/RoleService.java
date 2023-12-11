@@ -13,6 +13,6 @@ import java.util.UUID;
 public interface RoleService {
     ResponseEntity<StandardResponse<RoleEntity>>saveRole(RoleDto roleDto);
     ResponseEntity<StandardResponse<?>>deleteRole(UUID id);
-    ResponseEntity<StandardResponse<RoleEntity>>updateRole(String oldName,String newName);
-    ResponseEntity<StandardResponse<List<RoleEntity>>>getAllRoles();
+    ResponseEntity<StandardResponse<RoleEntity>>updateRole(RoleDto roleDto,UUID id);
+    ResponseEntity<StandardResponse<List<RoleEntity>>> getAllRoles();
 }
