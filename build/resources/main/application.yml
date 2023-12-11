@@ -36,4 +36,4 @@ jwt:
   refresh:
     expiry: 300000
 
-forDataLoader: never
+forDataLoader: always

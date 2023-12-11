@@ -52,7 +52,7 @@ public class SecurityConfig {
                 .authorizeHttpRequests((requestsConfigurer) ->
                         requestsConfigurer
                                 .requestMatchers(permitAll).permitAll()
-                                .requestMatchers("/nova/role/**").permitAll()
+                                .requestMatchers("/nova/role/**").hasRole("ADMIN")
                                 .anyRequest().authenticated()
                 )
                 .sessionManagement((session) -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
