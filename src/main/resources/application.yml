@@ -3,9 +3,9 @@ server:
 
 spring:
   datasource:
-    username: novastore_user
-    password: Yg69BP96gyB8L2HR1rVv9zt8UMebe5Ae
-    url: jdbc:postgresql://dpg-clpi5o146foc73cgjpdg-a.oregon-postgres.render.com:5432/novastore
+    username: user
+    password: ko6SfOUcT2LLz1kgFgEIcvBDA27PSdL8
+    url: jdbc:postgresql://dpg-clrjinpjvg7s73ei4q60-a.oregon-postgres.render.com:5432/novastore_czy4
     driver-class-name: org.postgresql.Driver
   mail:
     host: smtp.gmail.com
@@ -36,5 +36,5 @@ jwt:
   refresh:
     expiry: 300000
 
-forDataLoader: always
+forDataLoader: never
 
