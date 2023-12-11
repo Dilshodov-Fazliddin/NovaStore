@@ -14,7 +14,7 @@ import java.util.List;
 @NoArgsConstructor
 public class StandardResponse<T> {
     private String message;
-    private T data;
+    private Object data;
     private Integer status;
-    private List<T>list;
+
 }

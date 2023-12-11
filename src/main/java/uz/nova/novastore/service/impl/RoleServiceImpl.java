@@ -10,6 +10,7 @@ import uz.nova.novastore.mapper.RoleMapper;
 import uz.nova.novastore.repository.UserRoleRepository;
 import uz.nova.novastore.service.RoleService;
 
+import javax.management.relation.Role;
 import java.util.List;
 import java.util.UUID;
 
@@ -41,7 +42,7 @@ public class RoleServiceImpl implements RoleService {
 
     @Override
     public ResponseEntity<StandardResponse<List<RoleEntity>>> getAllRoles() {
-        return ResponseEntity.ok(StandardResponse.<List<RoleEntity>>builder().message("All roles").status(200).list(List.of(roleRepository.findAll())).build());
+        return ResponseEntity.ok(StandardResponse.<List<RoleEntity>>builder().message("All roles").status(200).data(roleRepository.findAll()).build());
     }
 
 }
