@@ -1,3 +1,4 @@
+
 package uz.nova.novastore.entity;
 
 import jakarta.persistence.Entity;
