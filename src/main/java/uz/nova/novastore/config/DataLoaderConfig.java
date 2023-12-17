@@ -14,6 +14,8 @@ import uz.nova.novastore.repository.CategoryRepository;
 import uz.nova.novastore.repository.UserRepository;
 import uz.nova.novastore.repository.UserRoleRepository;
 
+import java.time.LocalDate;
+
 
 @Configuration
 @RequiredArgsConstructor
@@ -36,7 +38,7 @@ public class DataLoaderConfig implements CommandLineRunner {
             userRoleRepository.save(RoleEntity.builder().name("ROLE_USER").build());
             userRoleRepository.save(RoleEntity.builder().name("ROLE_CUSTOMER").build());
             System.out.println("Basic Role successfully saved");
-            userRepository.save(UserEntity.builder().name("Fazliddin").isCredentialsNonExpired(true).isAccountNonExpired(true).isAccountNonLocked(true).isEnabled(true).email("dilshod@gmail.com").surname("Adminov").password(passwordEncoder.encode("admin")).role(roleAdmin).build());
+            userRepository.save(UserEntity.builder().firstname("admin").lastname("admin").birthday(LocalDate.parse("2023-01-01")).email("admin@gmail.com").isCredentialsNonExpired(true).isAccountNonExpired(true).isAccountNonLocked(true).isEnabled(true).password(passwordEncoder.encode("admin")).role(roleAdmin).build());
             System.out.println("Admin saved");
         }
     }

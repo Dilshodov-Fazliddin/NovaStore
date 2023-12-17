@@ -16,7 +16,9 @@ public class UserMapper {
     public UserEntity toEntity(UserCreateDto userCreate, Integer randomCode) {
         return UserEntity.builder()
                 .email(userCreate.getEmail())
-                .name(userCreate.getName())
+                .firstname(userCreate.getFirstname())
+                .lastname(userCreate.getLastname())
+                .birthday(userCreate.getBirthday())
                 .role(userRoleRepository.findByName("ROLE_USER"))
                 .emailCode(randomCode)
                 .password(passwordEncoder.encode(userCreate.getPassword()))
@@ -24,6 +26,6 @@ public class UserMapper {
                 .isEnabled(false)
                 .isAccountNonLocked(true)
                 .isAccountNonExpired(true)
-                .birthday(userCreate.getBirthDay()).build();
+                .birthday(userCreate.getBirthday()).build();
     }
 }

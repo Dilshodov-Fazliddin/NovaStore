@@ -8,10 +8,10 @@ import uz.nova.novastore.domain.UserCreateDto;
 import uz.nova.novastore.domain.VerifyForgetPasswordDto;
 
 @Service
-public interface UserService {
+public interface
+UserService {
 
     ResponseEntity<StandardResponse<?>> signUp(UserCreateDto userCreate);
-
 
     ResponseEntity<StandardResponse<?>> verify(Integer code, String email);
 
