@@ -1,5 +1,6 @@
 package uz.nova.novastore.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -20,14 +21,14 @@ import java.util.Collections;
 @Builder
 public class UserEntity extends BaseEntity implements UserDetails {
     @Column(nullable = false)
-    private String name;
-    private String surname;
+    private String firstname;
+    private String lastname;
     @Column(unique = true, nullable = false)
     private String email;
     private String password;
     @ManyToOne
     private RoleEntity role;
-    @DateTimeFormat(pattern = "YY-mm-dd")
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private LocalDate birthday;
     private Integer emailCode;
     private Boolean isAccountNonExpired;
