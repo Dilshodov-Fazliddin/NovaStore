@@ -53,6 +53,7 @@ public class SecurityConfig {
                         requestsConfigurer
                                 .requestMatchers(permitAll).permitAll()
                                 .requestMatchers("/nova/role/**").hasRole("ADMIN")
+                                .requestMatchers("/nova/product-service/**").permitAll()
                                 .anyRequest().authenticated()
                 )
                 .sessionManagement((session) -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))

@@ -1,5 +1,6 @@
 package uz.nova.novastore.controller;
 
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -18,7 +19,7 @@ public class RoleController {
     private final RoleService roleService;
 
     @PostMapping("/create")
-    public ResponseEntity<StandardResponse<RoleEntity>>save(@RequestBody RoleDto roleDto){
+    public ResponseEntity<StandardResponse<RoleEntity>>save(@Valid @RequestBody RoleDto roleDto){
         return roleService.saveRole(roleDto);
     }
 
@@ -34,7 +35,7 @@ public class RoleController {
     }
 
     @PutMapping("/update")
-    public ResponseEntity<StandardResponse<RoleEntity>>update(@RequestBody RoleDto roleDto,@RequestParam UUID id){
+    public ResponseEntity<StandardResponse<RoleEntity>>update(@Valid @RequestBody RoleDto roleDto,@RequestParam UUID id){
         return roleService.updateRole(roleDto,id);
     }
 }

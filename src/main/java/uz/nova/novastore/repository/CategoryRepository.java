@@ -7,4 +7,5 @@ import uz.nova.novastore.entity.CategoryEntity;
 import java.util.UUID;
 @Repository
 public interface CategoryRepository extends JpaRepository<CategoryEntity , UUID> {
+    CategoryEntity findByName(String name);
 }

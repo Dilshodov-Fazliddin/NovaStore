@@ -13,7 +13,7 @@ public class RoleMapper {
 
     public RoleEntity toEntity(RoleDto roleDto){
         return RoleEntity.builder()
-                .name(roleDto.getName())
+                .name("ROLE_"+roleDto.getName().toUpperCase())
                 .build();
     }
 }

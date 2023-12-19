@@ -12,14 +12,15 @@ import java.time.LocalDate;
 @Data
 @Builder
 public class UserCreateDto {
-    @NotNull(message = "Insert name")
+    @NotNull(message = "Insert your name")
     private String firstname;
-    @NotNull(message = "Insert email")
+    @NotNull(message = "Insert your email")
     private String email;
-    @NotNull(message = "Insert password")
+    @NotNull(message = "Insert your password")
     private String password;
+    @NotNull(message = "Insert your birthday")
     @JsonFormat(pattern = "yyyy-MM-dd")
     private LocalDate birthday;
-    @NotNull(message = "Insert surname")
+    @NotNull(message = "Insert your surname")
     private String lastname;
 }
