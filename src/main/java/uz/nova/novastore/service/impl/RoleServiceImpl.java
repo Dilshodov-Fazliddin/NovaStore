@@ -6,6 +6,8 @@ import org.springframework.stereotype.Service;
 import uz.nova.novastore.domain.RoleDto;
 import uz.nova.novastore.domain.StandardResponse;
 import uz.nova.novastore.entity.RoleEntity;
+import uz.nova.novastore.exception.DataNotFoundException;
+import uz.nova.novastore.exception.NotAcceptableException;
 import uz.nova.novastore.mapper.RoleMapper;
 import uz.nova.novastore.repository.UserRoleRepository;
 import uz.nova.novastore.service.RoleService;
@@ -33,11 +35,13 @@ public class RoleServiceImpl implements RoleService {
 
     @Override
     public ResponseEntity<StandardResponse<RoleEntity>> updateRole(RoleDto roleDto, UUID id) {
-        roleRepository.deleteById(id);
-        RoleEntity role = roleMapper.toEntity(roleDto);
-        role.setName("ROLE_"+role.getName().toUpperCase());
-        roleRepository.save(role);
-        return ResponseEntity.ok(StandardResponse.<RoleEntity>builder().data(null).status(200).message("role updated").build());
+        RoleEntity role=roleRepository.findById(id).orElseThrow(() -> new DataNotFoundException("Role not found"));
+        if (!roleDto.getName().isBlank()) {
+            role.setName("ROLE_" + roleDto.getName().toUpperCase());
+            roleRepository.save(role);
+            return ResponseEntity.ok(StandardResponse.<RoleEntity>builder().data(null).status(200).message("role updated").build());
+        }
+        throw new NotAcceptableException("Something went wrong, please try again");
     }
 
     @Override

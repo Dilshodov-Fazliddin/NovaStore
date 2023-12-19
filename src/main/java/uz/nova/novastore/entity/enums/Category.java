@@ -4,7 +4,7 @@ public enum Category {
     PHONE,
     LAPTOPS,
     CONSOLE,
-    WEAR,
+    CLOTHES,
     GAMEPAD,
     KEYBOARD,
     FOR_HOME,

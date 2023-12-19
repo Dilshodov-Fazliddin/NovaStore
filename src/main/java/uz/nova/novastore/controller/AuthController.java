@@ -19,22 +19,22 @@ public class AuthController {
     }
 
     @PutMapping("/verify")
-    public ResponseEntity<StandardResponse<?>> verify(@RequestParam int code, @RequestParam String email) {
+    public ResponseEntity<StandardResponse<?>> verify(@Valid @RequestParam int code, @RequestParam String email) {
         return userService.verify(code, email);
     }
 
     @PostMapping("/login")
-    public ResponseEntity<StandardResponse<Object>> login(@RequestBody LoginDto loginDto) {
+    public ResponseEntity<StandardResponse<Object>> login(@Valid @RequestBody LoginDto loginDto) {
         return userService.login(loginDto);
     }
 
     @PutMapping("/forgetPassword")
-    public ResponseEntity<StandardResponse<?>> forgetPassword(@RequestParam String email) {
+    public ResponseEntity<StandardResponse<?>> forgetPassword(@Valid @RequestParam String email) {
         return userService.forgetPassword(email);
     }
 
     @PutMapping("/verifyForgetPassword")
-    public ResponseEntity<StandardResponse<?>> verifyForgetPassword(@RequestBody VerifyForgetPasswordDto verifyForgetPasswordDto) {
+    public ResponseEntity<StandardResponse<?>> verifyForgetPassword(@Valid @RequestBody VerifyForgetPasswordDto verifyForgetPasswordDto) {
         return userService.verifyForgetPassword(verifyForgetPasswordDto);
     }
 }
