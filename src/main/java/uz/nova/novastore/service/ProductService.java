@@ -4,6 +4,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import uz.nova.novastore.domain.CreateProductDto;
 import uz.nova.novastore.domain.StandardResponse;
+import uz.nova.novastore.entity.CategoryEntity;
 import uz.nova.novastore.entity.ProductEntity;
 
 import java.security.Principal;
@@ -16,4 +17,5 @@ public interface ProductService {
      ResponseEntity<StandardResponse<?>>deleteProduct(Principal principal, UUID id);
      ResponseEntity<StandardResponse<List<ProductEntity>>>getAll();
      ResponseEntity<StandardResponse<?>>updateProduct(CreateProductDto dto,UUID id);
+     ResponseEntity<StandardResponse<List<ProductEntity>>>getProductByCategory(String name,int size,int page);
 }

@@ -35,11 +35,15 @@ public class DataLoaderConfig implements CommandLineRunner {
             }
             System.out.println("Successfully saved basic categories");
             RoleEntity roleAdmin = userRoleRepository.save(RoleEntity.builder().name("ROLE_ADMIN").build());
-            userRoleRepository.save(RoleEntity.builder().name("ROLE_USER").build());
-            userRoleRepository.save(RoleEntity.builder().name("ROLE_CUSTOMER").build());
+            RoleEntity roleUser = userRoleRepository.save(RoleEntity.builder().name("ROLE_USER").build());
+            RoleEntity roleCustomer = userRoleRepository.save(RoleEntity.builder().name("ROLE_CUSTOMER").build());
             System.out.println("Basic Role successfully saved");
             userRepository.save(UserEntity.builder().firstname("admin").lastname("admin").birthday(LocalDate.parse("2023-01-01")).email("admin@gmail.com").isCredentialsNonExpired(true).isAccountNonExpired(true).isAccountNonLocked(true).isEnabled(true).password(passwordEncoder.encode("admin")).role(roleAdmin).build());
             System.out.println("Admin saved");
+            userRepository.save(UserEntity.builder().firstname("customer").lastname("customer").birthday(LocalDate.parse("2023-01-01")).email("customer@gmail.com").isCredentialsNonExpired(true).isAccountNonExpired(true).isAccountNonLocked(true).isEnabled(true).password(passwordEncoder.encode("customer")).role(roleCustomer).build());
+            System.out.println("Customer saved");
+            userRepository.save(UserEntity.builder().firstname("user").lastname("user").birthday(LocalDate.parse("2023-01-01")).email("user@gmail.com").isCredentialsNonExpired(true).isAccountNonExpired(true).isAccountNonLocked(true).isEnabled(true).password(passwordEncoder.encode("user")).role(roleUser).build());
+            System.out.println("User saved");
         }
     }
 }
