@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.Column;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -25,6 +26,6 @@ public class CreateProductDto {
     @NotNull(message = "Insert category")
     private String category;
     @NotNull(message = "Insert  description")
-    @Max(value = 135,message = "Max size 135 latter")
+    @Size(max = 135,message = "max size 135 latter")
     private String description;
 }

@@ -36,5 +36,6 @@ public class AuthController {
     @PutMapping("/verifyForgetPassword")
     public ResponseEntity<StandardResponse<?>> verifyForgetPassword(@Valid @RequestBody VerifyForgetPasswordDto verifyForgetPasswordDto) {
         return userService.verifyForgetPassword(verifyForgetPasswordDto);
+
     }
 }

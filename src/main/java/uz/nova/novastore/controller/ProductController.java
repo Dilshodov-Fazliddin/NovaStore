@@ -6,6 +6,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import uz.nova.novastore.domain.CreateProductDto;
 import uz.nova.novastore.domain.StandardResponse;
+import uz.nova.novastore.entity.CategoryEntity;
 import uz.nova.novastore.entity.ProductEntity;
 import uz.nova.novastore.service.ProductService;
 
@@ -39,4 +40,5 @@ public class ProductController {
     public ResponseEntity<StandardResponse<?>>updateName( @RequestBody CreateProductDto productDto,@RequestParam UUID id){
         return productService.updateProduct(productDto,id);
     }
+
 }
