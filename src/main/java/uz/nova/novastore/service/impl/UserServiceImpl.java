@@ -1,6 +1,7 @@
 package uz.nova.novastore.service.impl;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.*;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -18,6 +19,8 @@ import uz.nova.novastore.repository.UserRepository;
 import uz.nova.novastore.service.MailService;
 import uz.nova.novastore.service.UserService;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 @Service
@@ -77,6 +80,30 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         user.setEmailCode(null);
         userRepository.save(user);
         return ResponseEntity.ok(StandardResponse.builder().status(200).message("Successfully updated password").data(null).build());
+    }
+
+    @Override
+    public ResponseEntity<StandardResponse<Object>> getAllUsers(int page,int size) {
+        Sort sort = Sort.by(Sort.Direction.ASC,"firstname");
+        Pageable pageable=PageRequest.of(page,size,sort);
+        List<UserEntity> all = userRepository.findAll();
+        Page<UserForFront> userForFronts = mapUsers(all,pageable);
+
+        return ResponseEntity.ok(StandardResponse.builder().data(userForFronts).message("This is user List").status(200).build());
+    }
+
+    @Override
+    public Page<UserForFront> mapUsers(List<UserEntity> userEntities, Pageable pageable) {
+        List<UserForFront>userForFronts = new ArrayList<>();
+        for (UserEntity users:userEntities){
+            userForFronts.add(UserForFront.builder()
+                            .age(2023-users.getBirthday().getYear())
+                            .firstname(users.getFirstname())
+                            .lastName(users.getFirstname())
+                            .isEnabled(users.getIsEnabled())
+                    .build());
+        }
+        return new PageImpl<>(userForFronts,pageable,userEntities.size());
     }
 
 
