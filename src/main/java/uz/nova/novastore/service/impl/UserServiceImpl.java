@@ -9,6 +9,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import uz.nova.novastore.domain.*;
+import uz.nova.novastore.domain.request.ProfileDto;
 import uz.nova.novastore.entity.UserEntity;
 import uz.nova.novastore.exception.DataNotFoundException;
 import uz.nova.novastore.exception.ForbiddenException;
@@ -22,10 +23,12 @@ import uz.nova.novastore.service.UserService;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
 public class UserServiceImpl implements UserService, UserDetailsService {
+
     private final UserRepository userRepository;
     private final UserMapper userMapper;
     private final MailService mailService;
@@ -54,10 +57,13 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     @Override
     public ResponseEntity<StandardResponse<Object>> login(LoginDto loginDto) {
         UserEntity user = userRepository.findByEmail(loginDto.getEmail()).orElseThrow(() -> new DataNotFoundException("Password or username isn't correct"));
-        if (passwordEncoder.matches(loginDto.getPassword(),user.getPassword())) {
-            return ResponseEntity.ok(StandardResponse.builder().status(200).message("User successfully login in system").
-                    data(JwtResponse.builder().accessToken(jwtService.generateAccessToken(user)).build())
-                    .build());
+        if ((passwordEncoder.matches(loginDto.getPassword(),user.getPassword()))) {
+            if (user.getIsEnabled()) {
+                return ResponseEntity.ok(StandardResponse.builder().status(200).message("User successfully login in system").
+                        data(JwtResponse.builder().accessToken(jwtService.generateAccessToken(user)).build())
+                        .build());
+            }
+            throw new NotAcceptableException("Your account has blocked");
         }
         throw new NotAcceptableException("Password or username isn't correct");
     }
@@ -87,16 +93,16 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         Sort sort = Sort.by(Sort.Direction.ASC,"firstname");
         Pageable pageable=PageRequest.of(page,size,sort);
         List<UserEntity> all = userRepository.findAll();
-        Page<UserForFront> userForFronts = mapUsers(all,pageable);
+        Page<ProfileDto> userForFronts = mapUsers(all,pageable);
 
         return ResponseEntity.ok(StandardResponse.builder().data(userForFronts).message("This is user List").status(200).build());
     }
 
     @Override
-    public Page<UserForFront> mapUsers(List<UserEntity> userEntities, Pageable pageable) {
-        List<UserForFront>userForFronts = new ArrayList<>();
+    public Page<ProfileDto> mapUsers(List<UserEntity> userEntities, Pageable pageable) {
+        List<ProfileDto>userForFronts = new ArrayList<>();
         for (UserEntity users:userEntities){
-            userForFronts.add(UserForFront.builder()
+            userForFronts.add(ProfileDto.builder()
                             .age(2023-users.getBirthday().getYear())
                             .firstname(users.getFirstname())
                             .lastName(users.getFirstname())
@@ -104,6 +110,32 @@ public class UserServiceImpl implements UserService, UserDetailsService {
                     .build());
         }
         return new PageImpl<>(userForFronts,pageable,userEntities.size());
+    }
+
+    @Override
+    public ResponseEntity<StandardResponse<?>> blockUsers(UUID id) {
+        UserEntity user = userRepository.findById(id).orElseThrow(() -> new DataNotFoundException("User not found"));
+        if (!user.getIsEnabled()){
+            throw new NotAcceptableException("This user blocked");
+        }else {
+            user.setIsEnabled(false);
+            mailService.sendNotificationBlockUser(user.getEmail());
+            userRepository.save(user);
+            return ResponseEntity.ok(StandardResponse.builder().status(200).message("account blocked successfully").data(null).build());
+        }
+    }
+
+    @Override
+    public ResponseEntity<StandardResponse<?>> unblockUsers(UUID id) {
+        UserEntity user = userRepository.findById(id).orElseThrow(() -> new DataNotFoundException("User not found"));
+        if (user.getIsEnabled()){
+            throw new NotAcceptableException("This user not blocked");
+        }else {
+            user.setIsEnabled(true);
+            mailService.sendNotificationUnBlockUser(user.getEmail());
+            userRepository.save(user);
+            return ResponseEntity.ok(StandardResponse.builder().status(200).message("account unblocked successfully").data(null).build());
+        }
     }
 
 

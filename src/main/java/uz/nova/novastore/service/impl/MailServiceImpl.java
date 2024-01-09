@@ -23,4 +23,26 @@ public class MailServiceImpl implements MailService {
         simpleMailMessage.setText(message);
         javaMailSender.send(simpleMailMessage);
     }
+
+    @Override
+    public void sendNotificationBlockUser(String email) {
+        String message="Your account has blocked";
+        SimpleMailMessage simpleMailMessage = new SimpleMailMessage();
+        simpleMailMessage.setSubject("Block account");
+        simpleMailMessage.setTo(email);
+        simpleMailMessage.setFrom(sender);
+        simpleMailMessage.setText(message);
+        javaMailSender.send(simpleMailMessage);
+    }
+
+    @Override
+    public void sendNotificationUnBlockUser(String email) {
+        String message="Your account unblocked";
+        SimpleMailMessage simpleMailMessage = new SimpleMailMessage();
+        simpleMailMessage.setSubject("UnBlock account");
+        simpleMailMessage.setTo(email);
+        simpleMailMessage.setFrom(sender);
+        simpleMailMessage.setText(message);
+        javaMailSender.send(simpleMailMessage);
+    }
 }

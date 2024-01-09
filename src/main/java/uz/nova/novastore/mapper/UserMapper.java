@@ -5,12 +5,12 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import uz.nova.novastore.domain.UserCreateDto;
 import uz.nova.novastore.entity.UserEntity;
-import uz.nova.novastore.repository.UserRoleRepository;
+import uz.nova.novastore.repository.RoleRepository;
 
 @Service
 @RequiredArgsConstructor
 public class UserMapper {
-    private final UserRoleRepository userRoleRepository;
+    private final RoleRepository userRoleRepository;
     private final PasswordEncoder passwordEncoder;
 
     public UserEntity toEntity(UserCreateDto userCreate, Integer randomCode) {
