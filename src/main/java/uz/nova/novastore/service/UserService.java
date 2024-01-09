@@ -5,9 +5,11 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import uz.nova.novastore.domain.*;
+import uz.nova.novastore.domain.request.ProfileDto;
 import uz.nova.novastore.entity.UserEntity;
 
 import java.util.List;
+import java.util.UUID;
 
 @Service
 public interface UserService {
@@ -21,6 +23,9 @@ public interface UserService {
     ResponseEntity<StandardResponse<?>> forgetPassword(String email);
 
     ResponseEntity<StandardResponse<?>> verifyForgetPassword(VerifyForgetPasswordDto verifyForgetPasswordDto);
-    ResponseEntity<StandardResponse<Object>>getAllUsers(int page,int size);
-   Page<UserForFront> mapUsers(List<UserEntity>userEntities, Pageable pageable);
+   Page<ProfileDto> mapUsers(List<UserEntity>userEntities, Pageable pageable);
+
+   ResponseEntity<StandardResponse<?>>blockUsers(UUID id);
+   ResponseEntity<StandardResponse<?>>unblockUsers(UUID id);
+    ResponseEntity<StandardResponse<Object>> getAllUsers(int page,int size);
 }

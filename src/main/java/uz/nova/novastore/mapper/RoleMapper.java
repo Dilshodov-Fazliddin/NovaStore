@@ -4,12 +4,12 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import uz.nova.novastore.domain.RoleDto;
 import uz.nova.novastore.entity.RoleEntity;
-import uz.nova.novastore.repository.UserRoleRepository;
+import uz.nova.novastore.repository.RoleRepository;
 
 @Service
 @RequiredArgsConstructor
 public class RoleMapper {
-    private final UserRoleRepository userRoleRepository;
+    private final RoleRepository userRoleRepository;
 
     public RoleEntity toEntity(RoleDto roleDto){
         return RoleEntity.builder()

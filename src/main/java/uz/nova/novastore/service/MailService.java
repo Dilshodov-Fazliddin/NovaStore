@@ -7,5 +7,7 @@ import uz.nova.novastore.domain.StandardResponse;
 @Service
 public interface MailService {
    void sendVerifyCode(Integer code,String email);
+   void sendNotificationBlockUser(String email);
+   void sendNotificationUnBlockUser(String email);
 }
 

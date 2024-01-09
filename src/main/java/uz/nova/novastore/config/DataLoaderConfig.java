@@ -1,7 +1,6 @@
 package uz.nova.novastore.config;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Configuration;
@@ -12,7 +11,7 @@ import uz.nova.novastore.entity.UserEntity;
 import uz.nova.novastore.entity.enums.Category;
 import uz.nova.novastore.repository.CategoryRepository;
 import uz.nova.novastore.repository.UserRepository;
-import uz.nova.novastore.repository.UserRoleRepository;
+import uz.nova.novastore.repository.RoleRepository;
 
 import java.time.LocalDate;
 
@@ -23,7 +22,7 @@ public class DataLoaderConfig implements CommandLineRunner {
     private final CategoryRepository categoryRepository;
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
-    private final UserRoleRepository userRoleRepository;
+    private final RoleRepository userRoleRepository;
     @Value("${forDataLoader}")
     private String forDataLoader;
 
