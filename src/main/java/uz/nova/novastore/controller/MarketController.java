@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import uz.nova.novastore.domain.StandardResponse;
+import uz.nova.novastore.domain.request.ProductEntityForFront;
 import uz.nova.novastore.entity.ProductEntity;
 import uz.nova.novastore.service.ProductService;
 
@@ -17,7 +18,7 @@ import java.util.List;
 public class MarketController {
     private final ProductService productService;
     @GetMapping("/get-by-category")
-    public ResponseEntity<StandardResponse<List<ProductEntity>>> getByCategory(@RequestParam String category, int size, int page){
+    public ResponseEntity<StandardResponse<List<ProductEntityForFront>>> getByCategory(@RequestParam String category, @RequestParam int size, @RequestParam int page){
         return productService.getProductByCategory(category,size,page);
     }
 }

@@ -23,7 +23,7 @@ public class ProductMapper {
                 .color(dto.getColor())
                 .price(dto.getPrice())
                 .description(dto.getDescription())
-                .category(categoryRepository.findByName(dto.getCategory()))
+                .category(categoryRepository.searchByName(dto.getCategory()))
                 .customer(userRepository.searchByEmail(principal.getName()))
                 .build();
     }

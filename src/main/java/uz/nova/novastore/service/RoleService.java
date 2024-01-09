@@ -16,8 +16,6 @@ public interface RoleService {
     ResponseEntity<StandardResponse<RoleEntity>>saveRole(RoleDto roleDto);
     ResponseEntity<StandardResponse<?>>deleteRole(UUID id);
     ResponseEntity<StandardResponse<RoleEntity>>updateRole(RoleDto roleDto,UUID id);
-
     ResponseEntity<StandardResponse<List<RoleForFront>>> getRoles(int size,int page);
-
     List<RoleForFront> mapRoles(List<RoleEntity> forMapping);
 }

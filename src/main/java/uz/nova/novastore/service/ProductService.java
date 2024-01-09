@@ -4,8 +4,11 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import uz.nova.novastore.domain.CreateProductDto;
 import uz.nova.novastore.domain.StandardResponse;
+import uz.nova.novastore.domain.request.ProductEntityForFront;
+import uz.nova.novastore.domain.request.RoleForFront;
 import uz.nova.novastore.entity.CategoryEntity;
 import uz.nova.novastore.entity.ProductEntity;
+import uz.nova.novastore.entity.RoleEntity;
 
 import java.security.Principal;
 import java.util.List;
@@ -17,5 +20,6 @@ public interface ProductService {
      ResponseEntity<StandardResponse<?>>deleteProduct(Principal principal, UUID id);
      ResponseEntity<StandardResponse<List<ProductEntity>>>getAll();
      ResponseEntity<StandardResponse<?>>updateProduct(CreateProductDto dto,UUID id);
-     ResponseEntity<StandardResponse<List<ProductEntity>>>getProductByCategory(String name,int size,int page);
+     ResponseEntity<StandardResponse<List<ProductEntityForFront>>>getProductByCategory(String name, int size, int page);
+     List<ProductEntityForFront> mapRoles(List<ProductEntity> forMapping);
 }

@@ -3,10 +3,13 @@ package uz.nova.novastore.service.impl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import uz.nova.novastore.domain.CreateProductDto;
 import uz.nova.novastore.domain.StandardResponse;
+import uz.nova.novastore.domain.request.ProductEntityForFront;
+import uz.nova.novastore.domain.request.RoleForFront;
 import uz.nova.novastore.entity.CategoryEntity;
 import uz.nova.novastore.entity.ProductEntity;
 import uz.nova.novastore.entity.UserEntity;
@@ -19,6 +22,7 @@ import uz.nova.novastore.repository.UserRepository;
 import uz.nova.novastore.service.ProductService;
 
 import java.security.Principal;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 import java.util.Vector;
@@ -63,13 +67,32 @@ public class ProductServiceImpl implements ProductService {
         }
 
     @Override
-    public ResponseEntity<StandardResponse<List<ProductEntity>>> getProductByCategory(String name, int size, int page) {
-        CategoryEntity category = categoryRepository.searchByName(name).orElseThrow(() -> new DataNotFoundException("Category not found"));
-        Pageable pageable = PageRequest.of(page,size);
-        return ResponseEntity.ok(StandardResponse.<List<ProductEntity>>builder().data(productRepository.findProductEntitiesByCategory(category,pageable))
-                .message("Products found by category").status(200).build());
-
+    public ResponseEntity<StandardResponse<List<ProductEntityForFront>>> getProductByCategory(String name, int size, int page) {
+        CategoryEntity category = categoryRepository.findByName(name)
+                .orElseThrow(()->new DataNotFoundException("Category not found"));
+        Sort sort = Sort.by(Sort.Direction.ASC,"name");
+        Pageable pageable = PageRequest.of(page,size,sort);
+        List<ProductEntity>product=productRepository.searchAllByCategory(category,pageable);
+        List<ProductEntityForFront> productEntityForFronts = mapRoles(product);
+        return ResponseEntity.ok(StandardResponse.<List<ProductEntityForFront>>builder().data(productEntityForFronts).message("this is products for Pageable").status(200).build());
     }
+
+    @Override
+    public List<ProductEntityForFront> mapRoles(List<ProductEntity> forMapping) {
+        List<ProductEntityForFront>productEntityForFronts=new ArrayList<>();
+        for (ProductEntity product:forMapping){
+            productEntityForFronts.add(ProductEntityForFront.builder()
+                            .name(product.getName())
+                            .brand(product.getBrand())
+                            .price(product.getPrice())
+                            .category(product.getCategory().getName())
+                            .customer(product.getCustomer().getUsername())
+                            .description(product.getDescription())
+                    .build());
+        }
+        return productEntityForFronts;
+    }
+
 }
 
 
