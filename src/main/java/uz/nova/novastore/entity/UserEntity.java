@@ -14,7 +14,7 @@ import java.util.Collection;
 import java.util.Collections;
 
 @EqualsAndHashCode(callSuper = true)
-@Entity
+@Entity(name = "users")
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
