@@ -1,5 +1,9 @@
 package uz.nova.novastore.controller;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.headers.Header;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -20,21 +24,53 @@ import java.util.UUID;
 public class ProductController {
     private final ProductService productService;
 
+    @ApiResponse(
+            headers = @Header(
+                    name = "authorization",
+                    required = true
+            ),
+            responseCode = "200"
+    )
+    @Operation(security = @SecurityRequirement(name = "jwtBearerAuth"))
     @PostMapping("/save")
     public ResponseEntity<StandardResponse<?>>save(@Valid @RequestBody CreateProductDto productDto, Principal principal){
         return productService.saveProduct(productDto,principal);
     }
 
+    @ApiResponse(
+            headers = @Header(
+                    name = "authorization",
+                    required = true
+            ),
+            responseCode = "200"
+    )
+    @Operation(security = @SecurityRequirement(name = "jwtBearerAuth"))
     @DeleteMapping("/delete")
     public ResponseEntity<StandardResponse<?>>delete(@RequestParam UUID productId,Principal principal){
         return productService.deleteProduct(principal,productId);
     }
 
+    @ApiResponse(
+            headers = @Header(
+                    name = "authorization",
+                    required = true
+            ),
+            responseCode = "200"
+    )
+    @Operation(security = @SecurityRequirement(name = "jwtBearerAuth"))
     @GetMapping("/get-all")
     public ResponseEntity<StandardResponse<List<ProductEntity>>>getAll(){
         return productService.getAll();
     }
 
+    @ApiResponse(
+            headers = @Header(
+                    name = "authorization",
+                    required = true
+            ),
+            responseCode = "200"
+    )
+    @Operation(security = @SecurityRequirement(name = "jwtBearerAuth"))
 
     @PutMapping("/change-name")
     public ResponseEntity<StandardResponse<?>>updateName( @RequestBody CreateProductDto productDto,@RequestParam UUID id){

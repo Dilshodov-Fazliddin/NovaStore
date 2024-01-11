@@ -1,5 +1,6 @@
 package uz.nova.novastore.service.impl;
 
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.*;
 import org.springframework.http.ResponseEntity;
@@ -10,12 +11,14 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import uz.nova.novastore.domain.*;
 import uz.nova.novastore.domain.request.ProfileDto;
+import uz.nova.novastore.entity.RoleEntity;
 import uz.nova.novastore.entity.UserEntity;
 import uz.nova.novastore.exception.DataNotFoundException;
 import uz.nova.novastore.exception.ForbiddenException;
 import uz.nova.novastore.exception.NotAcceptableException;
 import uz.nova.novastore.jwt.JwtService;
 import uz.nova.novastore.mapper.UserMapper;
+import uz.nova.novastore.repository.RoleRepository;
 import uz.nova.novastore.repository.UserRepository;
 import uz.nova.novastore.service.MailService;
 import uz.nova.novastore.service.UserService;
@@ -31,6 +34,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 
     private final UserRepository userRepository;
     private final UserMapper userMapper;
+    private final RoleRepository roleRepository;
     private final MailService mailService;
     private final PasswordEncoder passwordEncoder;
     private final JwtService jwtService;
@@ -99,6 +103,17 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     }
 
     @Override
+    public ResponseEntity<StandardResponse<List<ProfileDto>>> getCustomers(int page,int size) {
+        RoleEntity role = roleRepository.findByName("ROLE_CUSTOMER");
+        Sort sort=Sort.by(Sort.Direction.ASC,"firstname");
+        Pageable pageable = PageRequest.of(page,size,sort);
+        List<UserEntity>customers=userRepository.findByRole(role);
+        Page<ProfileDto> profileDto = mapUsers(customers, pageable);
+
+        return ResponseEntity.ok(StandardResponse.<List<ProfileDto>>builder().status(200).message("This is customers").data(profileDto).build());
+    }
+
+    @Override
     public Page<ProfileDto> mapUsers(List<UserEntity> userEntities, Pageable pageable) {
         List<ProfileDto>userForFronts = new ArrayList<>();
         for (UserEntity users:userEntities){
@@ -106,7 +121,6 @@ public class UserServiceImpl implements UserService, UserDetailsService {
                             .age(2023-users.getBirthday().getYear())
                             .firstname(users.getFirstname())
                             .lastName(users.getFirstname())
-                            .isEnabled(users.getIsEnabled())
                     .build());
         }
         return new PageImpl<>(userForFronts,pageable,userEntities.size());

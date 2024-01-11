@@ -24,8 +24,8 @@ public interface UserService {
 
     ResponseEntity<StandardResponse<?>> verifyForgetPassword(VerifyForgetPasswordDto verifyForgetPasswordDto);
    Page<ProfileDto> mapUsers(List<UserEntity>userEntities, Pageable pageable);
-
    ResponseEntity<StandardResponse<?>>blockUsers(UUID id);
    ResponseEntity<StandardResponse<?>>unblockUsers(UUID id);
-    ResponseEntity<StandardResponse<Object>> getAllUsers(int page,int size);
+   ResponseEntity<StandardResponse<Object>> getAllUsers(int page,int size);
+   ResponseEntity<StandardResponse<List<ProfileDto>>>getCustomers(int page,int size);
 }
