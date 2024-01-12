@@ -46,7 +46,7 @@ public class ProductController {
     )
     @Operation(security = @SecurityRequirement(name = "jwtBearerAuth"))
     @DeleteMapping("/delete")
-    public ResponseEntity<StandardResponse<?>>delete(@RequestParam UUID productId,Principal principal){
+    public ResponseEntity<StandardResponse<?>>deleteById(@RequestParam UUID productId,Principal principal){
         return productService.deleteProduct(principal,productId);
     }
 
@@ -75,6 +75,11 @@ public class ProductController {
     @PutMapping("/change-name")
     public ResponseEntity<StandardResponse<?>>updateName( @RequestBody CreateProductDto productDto,@RequestParam UUID id){
         return productService.updateProduct(productDto,id);
+    }
+
+    @DeleteMapping("/delete-bad-products")
+    public ResponseEntity<StandardResponse<?>>deleteBadProduct(@RequestParam UUID id,Principal principal){
+        return productService.deleteBadProducts(principal,id);
     }
 
 }

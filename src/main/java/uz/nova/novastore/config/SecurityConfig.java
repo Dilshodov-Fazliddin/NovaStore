@@ -35,7 +35,8 @@ public class SecurityConfig {
     }
 
     private final String[] permitAll = {"/swagger-ui/**", "/v3/api-docs/**", "/nova/user/auth/**"};
-
+    private final String[] forAdmin = {"/nova/product-service/delete-bad-products","/nova/users/**","/nova/role/**"};
+    private final String[] forCustomer = {"/nova/product-service/save","/nova/product-service/delete","/nova/product-service/get-all"};
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         return http
@@ -52,10 +53,9 @@ public class SecurityConfig {
                 .authorizeHttpRequests((requestsConfigurer) ->
                         requestsConfigurer
                                 .requestMatchers(permitAll).permitAll()
-                                .requestMatchers("/nova/role/**").hasRole("ADMIN")
-                                .requestMatchers("/nova/product-service/**").hasRole("CUSTOMER")
+                                .requestMatchers(forCustomer).hasRole("CUSTOMER")
                                 .requestMatchers("/nova/market/**").hasRole("USER")
-                                .requestMatchers("/nova/users/**").hasRole("ADMIN")
+                                .requestMatchers(forAdmin).hasRole("ADMIN")
                                 .anyRequest().authenticated()
                 )
                 .sessionManagement((session) -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))

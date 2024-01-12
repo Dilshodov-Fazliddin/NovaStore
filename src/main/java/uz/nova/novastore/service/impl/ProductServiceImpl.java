@@ -70,7 +70,7 @@ public class ProductServiceImpl implements ProductService {
     public ResponseEntity<StandardResponse<List<ProductEntityForFront>>> getProductByCategory(String name, int size, int page) {
         CategoryEntity category = categoryRepository.findByName(name)
                 .orElseThrow(()->new DataNotFoundException("Category not found"));
-        Sort sort = Sort.by(Sort.Direction.ASC,"name");
+        Sort sort = Sort.by(Sort.Direction.ASC,"price");
         Pageable pageable = PageRequest.of(page,size,sort);
         List<ProductEntity>product=productRepository.searchAllByCategory(category,pageable);
         List<ProductEntityForFront> productEntityForFronts = mapRoles(product);
@@ -91,6 +91,16 @@ public class ProductServiceImpl implements ProductService {
                     .build());
         }
         return productEntityForFronts;
+    }
+
+    @Override
+    public ResponseEntity<StandardResponse<?>> deleteBadProducts(Principal principal, UUID id) {
+        UserEntity user = userRepository.findByEmail(principal.getName()).orElseThrow(() -> new DataNotFoundException("User not found"));
+        if (user.getRole().getName().equals("ROLE_ADMIN")){
+            productRepository.deleteById(id);
+            return ResponseEntity.ok(StandardResponse.builder().data(null).message("Product successfully deleted").status(200).build());
+        }
+            throw new NotAcceptableException("You are not an admin");
     }
 
 }
