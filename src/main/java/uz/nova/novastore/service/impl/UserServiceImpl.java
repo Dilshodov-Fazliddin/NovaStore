@@ -83,13 +83,21 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     }
 
     @Override
-    public ResponseEntity<StandardResponse<?>> verifyForgetPassword(VerifyForgetPasswordDto verifyForgetPasswordDto) {
+    public ResponseEntity<StandardResponse<?>> verifyForgetCode(VerifyForgetPasswordDto verifyForgetPasswordDto) {
         UserEntity user = userRepository.findByEmailAndEmailCode(verifyForgetPasswordDto.getEmail(), Integer.valueOf(verifyForgetPasswordDto.getEmailCode()))
                 .orElseThrow(() -> new ForbiddenException("Your code is wrong"));
-        user.setPassword(passwordEncoder.encode(verifyForgetPasswordDto.getNewPassword()));
-        user.setEmailCode(null);
         userRepository.save(user);
-        return ResponseEntity.ok(StandardResponse.builder().status(200).message("Successfully updated password").data(null).build());
+        return ResponseEntity.ok(StandardResponse.builder().status(200).message("Your code is checked ✅").data(null).build());
+    }
+
+    @Override
+    public ResponseEntity<StandardResponse<?>> verifyForgetSetNewPassword(String email,String password) {
+        UserEntity user = userRepository.findByEmail(email)
+                .orElseThrow(() -> new DataNotFoundException("User not found"));
+        user.setEmailCode(null);
+        user.setPassword(passwordEncoder.encode(password));
+        userRepository.save(user);
+        return ResponseEntity.ok(StandardResponse.builder().status(200).message("User password saved").data(null).build());
     }
 
     @Override
@@ -109,7 +117,6 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         Pageable pageable = PageRequest.of(page,size,sort);
         List<UserEntity>customers=userRepository.findByRole(role);
         Page<ProfileDto> profileDto = mapUsers(customers, pageable);
-
         return ResponseEntity.ok(StandardResponse.<List<ProfileDto>>builder().status(200).message("This is customers").data(profileDto).build());
     }
 

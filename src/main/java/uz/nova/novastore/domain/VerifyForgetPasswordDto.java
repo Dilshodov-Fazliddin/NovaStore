@@ -15,6 +15,4 @@ public class VerifyForgetPasswordDto {
     private String emailCode;
     @NotNull(message = "Insert your email")
     private String email;
-    @NotNull(message = "Insert your new password")
-    private String newPassword;
 }

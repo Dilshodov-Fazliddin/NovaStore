@@ -22,7 +22,8 @@ public interface UserService {
 
     ResponseEntity<StandardResponse<?>> forgetPassword(String email);
 
-    ResponseEntity<StandardResponse<?>> verifyForgetPassword(VerifyForgetPasswordDto verifyForgetPasswordDto);
+    ResponseEntity<StandardResponse<?>> verifyForgetCode(VerifyForgetPasswordDto passwordDto);
+    ResponseEntity<StandardResponse<?>> verifyForgetSetNewPassword(String email,String newPassword);
    Page<ProfileDto> mapUsers(List<UserEntity>userEntities, Pageable pageable);
    ResponseEntity<StandardResponse<?>>blockUsers(UUID id);
    ResponseEntity<StandardResponse<?>>unblockUsers(UUID id);
