@@ -1,5 +1,7 @@
 package uz.nova.novastore.controller;
 
+import io.swagger.v3.oas.annotations.headers.Header;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -27,15 +29,47 @@ public class AuthController {
     public ResponseEntity<StandardResponse<Object>> login(@Valid @RequestBody LoginDto loginDto) {
         return userService.login(loginDto);
     }
-
+    @ApiResponse(
+            headers = @Header(
+                    name = "authorization",
+                    required = true
+            ),
+            responseCode = "200",
+            description = "first you need to send a request to this api"
+    )
     @PutMapping("/forgetPassword")
     public ResponseEntity<StandardResponse<?>> forgetPassword(@Valid @RequestParam String email) {
         return userService.forgetPassword(email);
     }
 
-    @PutMapping("/verifyForgetPassword")
+    @ApiResponse(
+            headers = @Header(
+                    name = "authorization",
+                    required = true
+            ),
+            responseCode = "200",
+            description = "after sending, we need to enter the verification code in the user's mail"
+    )
+    @PutMapping("/verifyForgetCode")
     public ResponseEntity<StandardResponse<?>> verifyForgetPassword(@Valid @RequestBody VerifyForgetPasswordDto verifyForgetPasswordDto) {
-        return userService.verifyForgetPassword(verifyForgetPasswordDto);
+        return userService.verifyForgetCode(verifyForgetPasswordDto);
 
     }
+
+    @ApiResponse(
+            headers = @Header(
+                    name = "authorization",
+                    required = true
+            ),
+            responseCode = "200",
+            description = "After everything is good, enter the new password"
+    )
+    @PutMapping("/set-new-password")
+    public ResponseEntity<StandardResponse<?>> setNewPassword(@RequestParam String email,@RequestParam String newPassword) {
+        return userService.verifyForgetSetNewPassword(email,newPassword);
+
+    }
+
+
+
 }
