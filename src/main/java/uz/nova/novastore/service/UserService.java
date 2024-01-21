@@ -29,4 +29,5 @@ public interface UserService {
    ResponseEntity<StandardResponse<?>>unblockUsers(UUID id);
    ResponseEntity<StandardResponse<Object>> getAllUsers(int page,int size);
    ResponseEntity<StandardResponse<List<ProfileDto>>>getCustomers(int page,int size);
+   ResponseEntity<StandardResponse<Integer>>getNumberOfUsers();
 }
