@@ -24,4 +24,5 @@ public interface UserRepository extends JpaRepository<UserEntity, UUID> {
     List<UserEntity>findByRole(RoleEntity role);
 
     Optional<UserEntity> findByEmailAndEmailCode(String email, Integer emailCode);
+    Integer countUserEntityBy();
 }

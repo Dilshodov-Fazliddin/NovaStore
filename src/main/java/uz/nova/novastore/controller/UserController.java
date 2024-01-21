@@ -80,4 +80,10 @@ public class UserController {
       return userService.getCustomers(page,size);
     }
 
+
+    @GetMapping("/get-number-users")
+    public ResponseEntity<StandardResponse<Integer>>numberOfUsers(){
+        return userService.getNumberOfUsers();
+    }
+
 }
