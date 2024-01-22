@@ -15,4 +15,6 @@ import java.util.UUID;
 public interface ProductRepository extends JpaRepository<ProductEntity, UUID> {
     List<ProductEntityForFront>findProductEntitiesByCategory(CategoryEntity category, Pageable pageable);
     List<ProductEntity>searchAllByCategory(CategoryEntity category,Pageable pageable);
+    Integer countProductEntitiesBy();
+
 }

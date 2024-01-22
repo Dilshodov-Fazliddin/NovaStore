@@ -23,4 +23,6 @@ public interface ProductService {
      ResponseEntity<StandardResponse<List<ProductEntityForFront>>>getProductByCategory(String name, int size, int page);
      List<ProductEntityForFront> mapRoles(List<ProductEntity> forMapping);
      ResponseEntity<StandardResponse<?>> deleteBadProducts(Principal principal, UUID id);
+     ResponseEntity<StandardResponse<Integer>>getNumberProducts();
+
 }

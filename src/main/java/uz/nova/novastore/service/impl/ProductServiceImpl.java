@@ -103,6 +103,11 @@ public class ProductServiceImpl implements ProductService {
             throw new NotAcceptableException("You are not an admin");
     }
 
+    @Override
+    public ResponseEntity<StandardResponse<Integer>> getNumberProducts() {
+        return ResponseEntity.ok(StandardResponse.<Integer>builder().status(200).message("this is products number").data(productRepository.countProductEntitiesBy()).build());
+    }
+
 }
 
 

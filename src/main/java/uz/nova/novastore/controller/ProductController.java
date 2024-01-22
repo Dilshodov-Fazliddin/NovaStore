@@ -82,4 +82,8 @@ public class ProductController {
         return productService.deleteBadProducts(principal,id);
     }
 
+    @GetMapping("/get-number-products")
+    public ResponseEntity<StandardResponse<Integer>>getNumberProducts(){
+        return productService.getNumberProducts();
+    }
 }
