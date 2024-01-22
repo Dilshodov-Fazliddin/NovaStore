@@ -76,12 +76,27 @@ public class ProductController {
     public ResponseEntity<StandardResponse<?>>updateName( @RequestBody CreateProductDto productDto,@RequestParam UUID id){
         return productService.updateProduct(productDto,id);
     }
-
+    @ApiResponse(
+            headers = @Header(
+                    name = "authorization",
+                    required = true
+            ),
+            responseCode = "200"
+    )
+    @Operation(security = @SecurityRequirement(name = "jwtBearerAuth"))
     @DeleteMapping("/delete-bad-products")
     public ResponseEntity<StandardResponse<?>>deleteBadProduct(@RequestParam UUID id,Principal principal){
         return productService.deleteBadProducts(principal,id);
     }
 
+    @ApiResponse(
+            headers = @Header(
+                    name = "authorization",
+                    required = true
+            ),
+            responseCode = "200"
+    )
+    @Operation(security = @SecurityRequirement(name = "jwtBearerAuth"))
     @GetMapping("/get-number-products")
     public ResponseEntity<StandardResponse<Integer>>getNumberProducts(){
         return productService.getNumberProducts();

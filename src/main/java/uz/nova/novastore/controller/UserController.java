@@ -80,11 +80,28 @@ public class UserController {
       return userService.getCustomers(page,size);
     }
 
-
+    @ApiResponse(
+            headers = @Header(
+                    name = "authorization",
+                    required = true
+            ),
+            responseCode = "200"
+    )
+    @Operation(security = @SecurityRequirement(name = "jwtBearerAuth"))
     @GetMapping("/get-number-users")
     public ResponseEntity<StandardResponse<Integer>>numberOfUsers(){
         return userService.getNumberOfUsers();
     }
+
+
+    @ApiResponse(
+            headers = @Header(
+                    name = "authorization",
+                    required = true
+            ),
+            responseCode = "200"
+    )
+    @Operation(security = @SecurityRequirement(name = "jwtBearerAuth"))
     @GetMapping("/get-number-b-users")
     public ResponseEntity<StandardResponse<Integer>>numberOfBlockedUsers(){
         return userService.getNumberOfBlockedUsers();
