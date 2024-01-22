@@ -125,6 +125,11 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         return ResponseEntity.ok(StandardResponse.<Integer>builder().data(userRepository.countUserEntityBy()).message("This is number of users").status(200).build());    }
 
     @Override
+    public ResponseEntity<StandardResponse<Integer>> getNumberOfBlockedUsers() {
+        return ResponseEntity.ok(StandardResponse.<Integer>builder().data(userRepository.countUserEntityBlock()).status(200).message("This is number of blocked users").build());
+    }
+
+    @Override
     public Page<ProfileDto> mapUsers(List<UserEntity> userEntities, Pageable pageable) {
         List<ProfileDto>userForFronts = new ArrayList<>();
         for (UserEntity users:userEntities){

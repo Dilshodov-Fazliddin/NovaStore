@@ -25,4 +25,8 @@ public interface UserRepository extends JpaRepository<UserEntity, UUID> {
 
     Optional<UserEntity> findByEmailAndEmailCode(String email, Integer emailCode);
     Integer countUserEntityBy();
+
+    @Query(value = "SELECT COUNT(u) AS disabled_user_count FROM users u WHERE u.is_enabled = false;",nativeQuery = true)
+    Integer countUserEntityBlock();
+
 }

@@ -41,7 +41,7 @@
 </td>
 <td>
 <div class="infoBox" id="duration">
-<div class="counter">0.618s</div>
+<div class="counter">0.429s</div>
 <p>duration</p>
 </div>
 </td>
@@ -79,7 +79,7 @@
 </thead>
 <tr>
 <td class="success">contextLoads()</td>
-<td class="success">0.618s</td>
+<td class="success">0.429s</td>
 <td class="success">passed</td>
 </tr>
 </table>
@@ -87,8 +87,8 @@
 <div id="tab1" class="tab">
 <h2>Standard output</h2>
 <span class="code">
-<pre>11:33:13.011 [Test worker] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [uz.nova.novastore.NovaStoreApplicationTests]: NovaStoreApplicationTests does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
-11:33:13.150 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration uz.nova.novastore.NovaStoreApplication for test class uz.nova.novastore.NovaStoreApplicationTests
+<pre>17:09:12.421 [Test worker] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [uz.nova.novastore.NovaStoreApplicationTests]: NovaStoreApplicationTests does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+17:09:12.524 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration uz.nova.novastore.NovaStoreApplication for test class uz.nova.novastore.NovaStoreApplicationTests
 
   .   ____          _            __ _ _
  /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
@@ -98,23 +98,24 @@
  =========|_|==============|___/=/_/_/_/
  :: Spring Boot ::                (v3.1.4)
 
-2024-01-21T11:33:13.706+05:00  INFO 10476 --- [    Test worker] u.n.novastore.NovaStoreApplicationTests  : Starting NovaStoreApplicationTests using Java 19.0.1 with PID 10476 (started by 99899 in D:\novaProject\NovaStore)
-2024-01-21T11:33:13.707+05:00  INFO 10476 --- [    Test worker] u.n.novastore.NovaStoreApplicationTests  : No active profile set, falling back to 1 default profile: &quot;default&quot;
-2024-01-21T11:33:14.841+05:00  INFO 10476 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2024-01-21T11:33:14.934+05:00  INFO 10476 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 82 ms. Found 5 JPA repository interfaces.
-2024-01-21T11:33:15.621+05:00  INFO 10476 --- [    Test worker] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-2024-01-21T11:33:15.718+05:00  INFO 10476 --- [    Test worker] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.2.9.Final
-2024-01-21T11:33:15.720+05:00  INFO 10476 --- [    Test worker] org.hibernate.cfg.Environment            : HHH000406: Using bytecode reflection optimizer
-2024-01-21T11:33:15.898+05:00  INFO 10476 --- [    Test worker] o.h.b.i.BytecodeProviderInitiator        : HHH000021: Bytecode provider name : bytebuddy
-2024-01-21T11:33:16.076+05:00  INFO 10476 --- [    Test worker] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
-2024-01-21T11:33:16.095+05:00  INFO 10476 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2024-01-21T11:33:19.103+05:00  INFO 10476 --- [    Test worker] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@3ee258
-2024-01-21T11:33:19.105+05:00  INFO 10476 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
-2024-01-21T11:33:20.279+05:00  INFO 10476 --- [    Test worker] o.h.b.i.BytecodeProviderInitiator        : HHH000021: Bytecode provider name : bytebuddy
-2024-01-21T11:33:21.245+05:00  INFO 10476 --- [    Test worker] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
-2024-01-21T11:33:29.711+05:00  INFO 10476 --- [    Test worker] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2024-01-21T11:33:30.780+05:00  INFO 10476 --- [    Test worker] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@3280a79a, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@79fbcef4, org.springframework.security.web.context.SecurityContextHolderFilter@1ef8f7e6, org.springframework.security.web.header.HeaderWriterFilter@26c494d7, org.springframework.web.filter.CorsFilter@770be0d0, org.springframework.security.web.authentication.logout.LogoutFilter@100d5018, uz.nova.novastore.jwt.JwtTokenFilter@6c54d0dc, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@650d5a3d, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@7040d71, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@5b5f06bb, org.springframework.security.web.session.SessionManagementFilter@6a35cccf, org.springframework.security.web.access.ExceptionTranslationFilter@6287e312, org.springframework.security.web.access.intercept.AuthorizationFilter@318f47f1]
-2024-01-21T11:33:31.575+05:00  INFO 10476 --- [    Test worker] u.n.novastore.NovaStoreApplicationTests  : Started NovaStoreApplicationTests in 18.251 seconds (process running for 19.774)
+2024-01-22T17:09:12.911+05:00  INFO 15540 --- [    Test worker] u.n.novastore.NovaStoreApplicationTests  : Starting NovaStoreApplicationTests using Java 19.0.1 with PID 15540 (started by 99899 in D:\novaProject\NovaStore)
+2024-01-22T17:09:12.912+05:00  INFO 15540 --- [    Test worker] u.n.novastore.NovaStoreApplicationTests  : No active profile set, falling back to 1 default profile: &quot;default&quot;
+2024-01-22T17:09:13.649+05:00  INFO 15540 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-01-22T17:09:13.720+05:00  INFO 15540 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 64 ms. Found 5 JPA repository interfaces.
+2024-01-22T17:09:14.201+05:00  INFO 15540 --- [    Test worker] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-01-22T17:09:14.263+05:00  INFO 15540 --- [    Test worker] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.2.9.Final
+2024-01-22T17:09:14.265+05:00  INFO 15540 --- [    Test worker] org.hibernate.cfg.Environment            : HHH000406: Using bytecode reflection optimizer
+2024-01-22T17:09:14.388+05:00  INFO 15540 --- [    Test worker] o.h.b.i.BytecodeProviderInitiator        : HHH000021: Bytecode provider name : bytebuddy
+2024-01-22T17:09:14.514+05:00  INFO 15540 --- [    Test worker] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-01-22T17:09:14.532+05:00  INFO 15540 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-01-22T17:09:14.686+05:00  INFO 15540 --- [    Test worker] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@66b31d46
+2024-01-22T17:09:14.688+05:00  INFO 15540 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2024-01-22T17:09:14.946+05:00  INFO 15540 --- [    Test worker] o.h.b.i.BytecodeProviderInitiator        : HHH000021: Bytecode provider name : bytebuddy
+2024-01-22T17:09:15.659+05:00  INFO 15540 --- [    Test worker] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2024-01-22T17:09:15.793+05:00  INFO 15540 --- [    Test worker] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-01-22T17:09:16.157+05:00  INFO 15540 --- [    Test worker] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
+2024-01-22T17:09:16.521+05:00  INFO 15540 --- [    Test worker] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@570089c4, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@409df37d, org.springframework.security.web.context.SecurityContextHolderFilter@73b034ca, org.springframework.security.web.header.HeaderWriterFilter@4b407ac7, org.springframework.web.filter.CorsFilter@2ab1c7a9, org.springframework.security.web.authentication.logout.LogoutFilter@411e567e, uz.nova.novastore.jwt.JwtTokenFilter@6e818345, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@3f9ee527, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@58a5b69c, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@3d9c69f8, org.springframework.security.web.session.SessionManagementFilter@2688b2be, org.springframework.security.web.access.ExceptionTranslationFilter@2719139f, org.springframework.security.web.access.intercept.AuthorizationFilter@689fe2a3]
+2024-01-22T17:09:17.117+05:00  INFO 15540 --- [    Test worker] u.n.novastore.NovaStoreApplicationTests  : Started NovaStoreApplicationTests in 4.452 seconds (process running for 5.513)
 </pre>
 </span>
 </div>
@@ -126,7 +127,7 @@
 <input id="line-wrapping-toggle" type="checkbox" autocomplete="off"/>
 </label>
 </div>Generated by 
-<a href="http://www.gradle.org">Gradle 8.4</a> at Jan 21, 2024, 11:33:34 AM</p>
+<a href="http://www.gradle.org">Gradle 8.4</a> at Jan 22, 2024, 5:09:17 PM</p>
 </div>
 </div>
 </body>

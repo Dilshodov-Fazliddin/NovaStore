@@ -85,5 +85,9 @@ public class UserController {
     public ResponseEntity<StandardResponse<Integer>>numberOfUsers(){
         return userService.getNumberOfUsers();
     }
+    @GetMapping("/get-number-b-users")
+    public ResponseEntity<StandardResponse<Integer>>numberOfBlockedUsers(){
+        return userService.getNumberOfBlockedUsers();
+    }
 
 }
