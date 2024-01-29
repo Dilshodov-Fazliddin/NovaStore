@@ -23,6 +23,9 @@ import uz.nova.novastore.repository.UserRepository;
 import uz.nova.novastore.service.MailService;
 import uz.nova.novastore.service.UserService;
 
+import java.security.Principal;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -127,6 +130,17 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     @Override
     public ResponseEntity<StandardResponse<Integer>> getNumberOfBlockedUsers() {
         return ResponseEntity.ok(StandardResponse.<Integer>builder().data(userRepository.countUserEntityBlock()).status(200).message("This is number of blocked users").build());
+    }
+
+    @Override
+    public ResponseEntity<StandardResponse<ProfileDto>> getProfile(Principal principal) {
+        UserEntity user = userRepository.findByEmail(principal.getName()).orElseThrow(() -> new DataNotFoundException("User not found"));
+        ProfileDto profile = ProfileDto.builder()
+                .firstname(user.getFirstname())
+                .lastName(user.getLastname())
+                .age(LocalDateTime.now().getYear() - user.getBirthday().getYear())
+                .build();
+        return ResponseEntity.ok(StandardResponse.<ProfileDto>builder().data(profile).message("This is user profile").status(200).build());
     }
 
     @Override

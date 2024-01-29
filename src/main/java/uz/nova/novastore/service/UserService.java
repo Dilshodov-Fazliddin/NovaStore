@@ -8,6 +8,7 @@ import uz.nova.novastore.domain.*;
 import uz.nova.novastore.domain.request.ProfileDto;
 import uz.nova.novastore.entity.UserEntity;
 
+import java.security.Principal;
 import java.util.List;
 import java.util.UUID;
 
@@ -31,4 +32,5 @@ public interface UserService {
    ResponseEntity<StandardResponse<List<ProfileDto>>>getCustomers(int page,int size);
     ResponseEntity<StandardResponse<Integer>>getNumberOfUsers();
     ResponseEntity<StandardResponse<Integer>>getNumberOfBlockedUsers();
+    ResponseEntity<StandardResponse<ProfileDto>>getProfile(Principal principal);
 }

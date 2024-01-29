@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="uz.nova.novastore.NovaStoreApplicationTests" tests="1" skipped="0" failures="0" errors="0" timestamp="2024-01-22T12:21:25" hostname="DESKTOP-AFNNAKF" time="0.391">
+<testsuite name="uz.nova.novastore.NovaStoreApplicationTests" tests="1" skipped="0" failures="0" errors="0" timestamp="2024-01-29T08:26:18" hostname="DESKTOP-AFNNAKF" time="0.38">
   <properties/>
-  <testcase name="contextLoads()" classname="uz.nova.novastore.NovaStoreApplicationTests" time="0.391"/>
-  <system-out><![CDATA[17:21:09.390 [Test worker] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [uz.nova.novastore.NovaStoreApplicationTests]: NovaStoreApplicationTests does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
-17:21:09.480 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration uz.nova.novastore.NovaStoreApplication for test class uz.nova.novastore.NovaStoreApplicationTests
+  <testcase name="contextLoads()" classname="uz.nova.novastore.NovaStoreApplicationTests" time="0.38"/>
+  <system-out><![CDATA[13:26:03.063 [Test worker] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [uz.nova.novastore.NovaStoreApplicationTests]: NovaStoreApplicationTests does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+13:26:03.151 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration uz.nova.novastore.NovaStoreApplication for test class uz.nova.novastore.NovaStoreApplicationTests
 
   .   ____          _            __ _ _
  /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
@@ -13,24 +13,24 @@
  =========|_|==============|___/=/_/_/_/
  :: Spring Boot ::                (v3.1.4)
 
-2024-01-22T17:21:09.820+05:00  INFO 16236 --- [    Test worker] u.n.novastore.NovaStoreApplicationTests  : Starting NovaStoreApplicationTests using Java 19.0.1 with PID 16236 (started by 99899 in D:\novaProject\NovaStore)
-2024-01-22T17:21:09.822+05:00  INFO 16236 --- [    Test worker] u.n.novastore.NovaStoreApplicationTests  : No active profile set, falling back to 1 default profile: "default"
-2024-01-22T17:21:10.475+05:00  INFO 16236 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2024-01-22T17:21:10.537+05:00  INFO 16236 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 55 ms. Found 5 JPA repository interfaces.
-2024-01-22T17:21:10.996+05:00  INFO 16236 --- [    Test worker] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-2024-01-22T17:21:11.051+05:00  INFO 16236 --- [    Test worker] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.2.9.Final
-2024-01-22T17:21:11.054+05:00  INFO 16236 --- [    Test worker] org.hibernate.cfg.Environment            : HHH000406: Using bytecode reflection optimizer
-2024-01-22T17:21:11.162+05:00  INFO 16236 --- [    Test worker] o.h.b.i.BytecodeProviderInitiator        : HHH000021: Bytecode provider name : bytebuddy
-2024-01-22T17:21:11.299+05:00  INFO 16236 --- [    Test worker] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
-2024-01-22T17:21:11.316+05:00  INFO 16236 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2024-01-22T17:21:14.267+05:00  INFO 16236 --- [    Test worker] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@40ac0a56
-2024-01-22T17:21:14.271+05:00  INFO 16236 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
-2024-01-22T17:21:15.277+05:00  INFO 16236 --- [    Test worker] o.h.b.i.BytecodeProviderInitiator        : HHH000021: Bytecode provider name : bytebuddy
-2024-01-22T17:21:15.871+05:00  INFO 16236 --- [    Test worker] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
-2024-01-22T17:21:24.674+05:00  INFO 16236 --- [    Test worker] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2024-01-22T17:21:24.973+05:00  INFO 16236 --- [    Test worker] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
-2024-01-22T17:21:25.289+05:00  INFO 16236 --- [    Test worker] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@34d644b5, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@276b68af, org.springframework.security.web.context.SecurityContextHolderFilter@6c54d0dc, org.springframework.security.web.header.HeaderWriterFilter@3b32f0b4, org.springframework.web.filter.CorsFilter@50915d5, org.springframework.security.web.authentication.logout.LogoutFilter@5246453e, uz.nova.novastore.jwt.JwtTokenFilter@63661fc7, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@7c74ef4a, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@1ec96512, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@65130cf2, org.springframework.security.web.session.SessionManagementFilter@3280a79a, org.springframework.security.web.access.ExceptionTranslationFilter@1ae37be2, org.springframework.security.web.access.intercept.AuthorizationFilter@668ea404]
-2024-01-22T17:21:25.791+05:00  INFO 16236 --- [    Test worker] u.n.novastore.NovaStoreApplicationTests  : Started NovaStoreApplicationTests in 16.185 seconds (process running for 17.169)
+2024-01-29T13:26:03.486+05:00  INFO 16132 --- [    Test worker] u.n.novastore.NovaStoreApplicationTests  : Starting NovaStoreApplicationTests using Java 19.0.1 with PID 16132 (started by 99899 in D:\novaProject\NovaStore)
+2024-01-29T13:26:03.487+05:00  INFO 16132 --- [    Test worker] u.n.novastore.NovaStoreApplicationTests  : No active profile set, falling back to 1 default profile: "default"
+2024-01-29T13:26:04.172+05:00  INFO 16132 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-01-29T13:26:04.237+05:00  INFO 16132 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 55 ms. Found 5 JPA repository interfaces.
+2024-01-29T13:26:04.680+05:00  INFO 16132 --- [    Test worker] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-01-29T13:26:04.739+05:00  INFO 16132 --- [    Test worker] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.2.9.Final
+2024-01-29T13:26:04.741+05:00  INFO 16132 --- [    Test worker] org.hibernate.cfg.Environment            : HHH000406: Using bytecode reflection optimizer
+2024-01-29T13:26:04.857+05:00  INFO 16132 --- [    Test worker] o.h.b.i.BytecodeProviderInitiator        : HHH000021: Bytecode provider name : bytebuddy
+2024-01-29T13:26:04.970+05:00  INFO 16132 --- [    Test worker] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-01-29T13:26:04.984+05:00  INFO 16132 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-01-29T13:26:07.533+05:00  INFO 16132 --- [    Test worker] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@e5c5e6
+2024-01-29T13:26:07.535+05:00  INFO 16132 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2024-01-29T13:26:08.510+05:00  INFO 16132 --- [    Test worker] o.h.b.i.BytecodeProviderInitiator        : HHH000021: Bytecode provider name : bytebuddy
+2024-01-29T13:26:09.134+05:00  INFO 16132 --- [    Test worker] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2024-01-29T13:26:17.393+05:00  INFO 16132 --- [    Test worker] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-01-29T13:26:17.729+05:00  INFO 16132 --- [    Test worker] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
+2024-01-29T13:26:18.079+05:00  INFO 16132 --- [    Test worker] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@20425fab, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@71c2cb26, org.springframework.security.web.context.SecurityContextHolderFilter@3a3375d8, org.springframework.security.web.header.HeaderWriterFilter@1ae37be2, org.springframework.web.filter.CorsFilter@593db293, org.springframework.security.web.authentication.logout.LogoutFilter@54b313d6, uz.nova.novastore.jwt.JwtTokenFilter@5220e6ff, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@38e100ab, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@318f47f1, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@602d5417, org.springframework.security.web.session.SessionManagementFilter@63075ad1, org.springframework.security.web.access.ExceptionTranslationFilter@49231d79, org.springframework.security.web.access.intercept.AuthorizationFilter@2e5ff1d4]
+2024-01-29T13:26:18.597+05:00  INFO 16132 --- [    Test worker] u.n.novastore.NovaStoreApplicationTests  : Started NovaStoreApplicationTests in 15.322 seconds (process running for 16.28)
 ]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>
