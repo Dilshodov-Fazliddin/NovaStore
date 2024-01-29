@@ -11,6 +11,7 @@ import uz.nova.novastore.domain.StandardResponse;
 import uz.nova.novastore.domain.request.ProfileDto;
 import uz.nova.novastore.service.UserService;
 
+import java.security.Principal;
 import java.util.List;
 import java.util.UUID;
 
@@ -106,5 +107,19 @@ public class UserController {
     public ResponseEntity<StandardResponse<Integer>>numberOfBlockedUsers(){
         return userService.getNumberOfBlockedUsers();
     }
+
+    @ApiResponse(
+            headers = @Header(
+                    name = "authorization",
+                    required = true
+            ),
+            responseCode = "200"
+    )
+    @Operation(security = @SecurityRequirement(name = "jwtBearerAuth"))
+    @GetMapping("/get-profile")
+    public ResponseEntity<StandardResponse<ProfileDto>>getProfile(Principal principal){
+        return userService.getProfile(principal);
+    }
+
 
 }
