@@ -5,7 +5,6 @@ import org.springframework.stereotype.Service;
 import uz.nova.novastore.domain.CreateProductDto;
 import uz.nova.novastore.entity.ProductEntity;
 import uz.nova.novastore.repository.CategoryRepository;
-import uz.nova.novastore.repository.ProductRepository;
 import uz.nova.novastore.repository.UserRepository;
 
 import java.security.Principal;

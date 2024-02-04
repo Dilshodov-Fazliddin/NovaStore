@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 import uz.nova.novastore.domain.CreateProductDto;
 import uz.nova.novastore.domain.StandardResponse;
 import uz.nova.novastore.domain.request.ProductEntityForFront;
-import uz.nova.novastore.domain.request.RoleForFront;
 import uz.nova.novastore.entity.CategoryEntity;
 import uz.nova.novastore.entity.ProductEntity;
 import uz.nova.novastore.entity.UserEntity;
@@ -25,7 +24,6 @@ import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
-import java.util.Vector;
 
 @Service
 @RequiredArgsConstructor

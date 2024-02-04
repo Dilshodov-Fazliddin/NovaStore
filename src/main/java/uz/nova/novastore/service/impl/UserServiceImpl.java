@@ -1,6 +1,5 @@
 package uz.nova.novastore.service.impl;
 
-import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.*;
 import org.springframework.http.ResponseEntity;
@@ -24,7 +23,6 @@ import uz.nova.novastore.service.MailService;
 import uz.nova.novastore.service.UserService;
 
 import java.security.Principal;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
