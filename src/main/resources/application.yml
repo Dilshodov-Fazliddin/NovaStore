@@ -3,20 +3,20 @@ server:
 
 spring:
   datasource:
-    username: user
-    password: ko6SfOUcT2LLz1kgFgEIcvBDA27PSdL8
-    url: jdbc:postgresql://dpg-clrjinpjvg7s73ei4q60-a.oregon-postgres.render.com:5432/novastore_czy4
+    username: *
+    password: *
+    url: *
     driver-class-name: org.postgresql.Driver
 #  datasource:
-#      username: postgres
+#      username: *
 #      driver-class-name: org.postgresql.Driver
-#      password: 1221
+#      password: *
 #      url: jdbc:postgresql://localhost:5432/nova_store
   mail:
     host: smtp.gmail.com
     port: 587
     username: omonov2006omonov@gmail.com
-    password: wkocegbefwfizukv
+    password: *
     properties:
       mjaail:
         smtp:
